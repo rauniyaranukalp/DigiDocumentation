@@ -5,6 +5,6 @@ namespace Persistence.RepositoryContract
 {
     public interface ITileRepository
     {
-        Task<Response<bool>> AddTile(AddTileReq model);
+        Task<Response<List<TileResModel>>> GetTitle();
     }
 }

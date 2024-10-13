@@ -8,31 +8,24 @@ namespace Persistence.RepositoryImplementation
 {
     public class TileRepository : ITileRepository
     {
-        private readonly IMongoCollection<AddTileReq> _tileCollection;
+        private readonly IMongoCollection<TileResModel> _tileCollection;
 
         public TileRepository(MongoDbConnection mongoDbConnection)
         {
-            _tileCollection = mongoDbConnection.Database.GetCollection<AddTileReq>("tiles");
+            _tileCollection = mongoDbConnection.Database.GetCollection<TileResModel>("tiles");
         }
-        public async Task<Response<bool>> AddTile(AddTileReq model)
+        public async Task<Response<List<TileResModel>>> GetTitle()
         {
             try
             {
-                var filter = Builders<AddTileReq>.Filter.Empty;
-                CountOptions opts = new CountOptions() { Hint = "_id_" };
-                var result = await _tileCollection.CountDocumentsAsync(filter, opts);
-                AddTileReq user = new AddTileReq()
-                {
-                    Name = model.Name,
-                    IsAdmin = model.IsAdmin,
-                };
-                await _tileCollection.InsertOneAsync(user);
-                return new Response<bool>(true, "Successfull");
+                var filter = Builders<TileResModel>.Filter.Empty;
+                var result = await _tileCollection.FindAsync(filter);
+                var tiles = await result.ToListAsync();
+                return new Response<List<TileResModel>>(tiles, "Successfully retrieved tiles.");
             }
             catch (Exception ex)
             {
-                return new Response<bool>(false, "Failed", false);
-
+                return new Response<List<TileResModel>>(null, "Failed to retrieve tiles.", false);
             }
         }
     }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Persistence.RepositoryContract;
+using Service.Contract;
 
 namespace DigiDocumentation.Controllers
 {
@@ -10,16 +11,18 @@ namespace DigiDocumentation.Controllers
     [ApiController]
     public class TileController : ControllerBase
     {
-        private readonly ITileRepository _tileRepository;
-        public TileController(ITileRepository tileRepository)
+        private readonly IServiceManager _serviceManager;
+
+        public TileController(IServiceManager serviceManager)
         {
-            _tileRepository = tileRepository;
+            _serviceManager = serviceManager;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddTile(AddTileReq model)
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> GetTile()
         {
-            var response = await this._tileRepository.AddTile(model);
+            var response = await this._serviceManager.TileService.GetTitle();
             return Ok(response);
         }
     }

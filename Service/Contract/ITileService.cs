@@ -5,6 +5,7 @@ namespace Service.Contract
 {
     public interface ITileService
     {
-        Task<Response<bool>> AddTile(AddTileReq model);
+        Task<Response<List<TileResModel>>> GetTitle();
+
     }
 }

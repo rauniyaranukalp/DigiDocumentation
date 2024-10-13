@@ -5,5 +5,6 @@
         IUserService UserService { get; }
         IAccountService AccountService { get; }
         IMenuService MenuService { get; }
+        ITileService TileService { get; }
     }
 }

@@ -13,9 +13,11 @@ namespace Service.Implementation
         {
             _repositoryManager = repositoryManager;
         }
-        public async Task<Response<bool>> AddTile(AddTileReq model)
+
+        public async Task<Response<List<TileResModel>>> GetTitle()
         {
-            return await _repositoryManager.TileRepository.AddTile(model);
+            return await _repositoryManager.TileRepository.GetTitle();
+
         }
     }
 }
