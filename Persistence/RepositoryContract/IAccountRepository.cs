@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Persistence.RepositoryContract
 {
     public interface IAccountRepository
     {
+        Task<Response<dynamic>> Login(string username, string password);
     }
 }

@@ -7,11 +7,13 @@ namespace Domain.User
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
-        public string? username { get; set; }
+        public string? _id { get; set; }
+        public string firstName { get; set; } = null!;
+        public string lastName { get; set; } = null!;
         public string password { get; set; } = null!;
         public string email { get; set; } = null!;
-        public string firstName { get; set; } = null!;
-        public string? lastName { get; set; }
+        public string? username { get; set; } 
+        public string role { get; set; } = "user";
+        public bool isActive { get; set; } = true;
     }
 }

@@ -1,5 +1,5 @@
-﻿using Domain.User;
-using Persistence;
+﻿using Domain.Common;
+using Domain.User;
 using Persistence.RepositoryContract;
 using Service.Contract;
 
@@ -13,7 +13,7 @@ namespace Service.Implementation
             _repositoryManager = repositoryManager;
         }
 
-        public async Task<bool> AddUser(AddUserReq req)
+        public async Task<Response<dynamic>> AddUser(AddUserReq req)
         {
             return await _repositoryManager.UserRepository.AddUser(req);
         }

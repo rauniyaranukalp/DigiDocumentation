@@ -1,14 +1,10 @@
-﻿using Domain.User;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Common;
+using Domain.User;
 
 namespace Persistence.RepositoryContract
 {
     public interface IUserRepository
     {
-        Task<bool> AddUser(AddUserReq req);
+        Task<Response<dynamic>> AddUser(AddUserReq req);
     }
 }

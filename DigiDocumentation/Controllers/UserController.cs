@@ -10,18 +10,18 @@ namespace DigiDocumentation.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IServiceManager _serviceManager;
 
-        public UserController(IUserService userService)
+        public UserController(IServiceManager serviceManager)
         {
-            _userService = userService;
+            _serviceManager = serviceManager;
         }
 
         [AllowAnonymous]
         [HttpPost("add-user")]
         public async Task<IActionResult> AddUser(AddUserReq req)
         {
-            var result = _userService.AddUser(req);
+            var result = await _serviceManager.UserService.AddUser(req);
             return Ok(result);
         }
     }

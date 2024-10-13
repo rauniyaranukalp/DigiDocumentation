@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Service.Contract;
 
 namespace DigiDocumentation.Controllers
 {
@@ -8,9 +9,18 @@ namespace DigiDocumentation.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        public AccountController()
+        private readonly IServiceManager _serviceManager;
+
+        public AccountController(IServiceManager serviceManager)
         {
-            
+            _serviceManager = serviceManager;
+        }
+
+        [AllowAnonymous]
+        [HttpGet("Login")]
+        public async Task<IActionResult> Login(string username, string password) 
+        {
+            return Ok(await _serviceManager.AccountService.Login(username, password));
         }
     }
 }

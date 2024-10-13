@@ -5,20 +5,15 @@ namespace Persistence
 {
     public class MongoDbConnection
     {
-        private readonly IConfiguration _configuration;
         private readonly IMongoDatabase mongoDatabase;
 
-        public MongoDbConnection(IConfiguration configuration, IMongoDatabase mongoDatabase)
+        public MongoDbConnection(IMongoClient mongoClient, IConfiguration configuration)
         {
-            this._configuration = configuration;
-
-            var connectionString = _configuration.GetConnectionString("dbConnection");
-            var mongoUrl = MongoUrl.Create(connectionString);
-            var mongoClient = new MongoClient(mongoUrl);
-            mongoDatabase = mongoClient.GetDatabase(mongoUrl.DatabaseName);
+            var databaseName = "TechDocumentationDB";
+            mongoDatabase = mongoClient.GetDatabase(databaseName);
         }
 
-        public IMongoDatabase? Database => mongoDatabase;
+        public IMongoDatabase Database => mongoDatabase;
     }
 }
     
