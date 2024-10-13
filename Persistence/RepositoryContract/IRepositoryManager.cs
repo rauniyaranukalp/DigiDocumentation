@@ -5,5 +5,6 @@
         IUserRepository UserRepository { get; }
         IAccountRepository AccountRepository { get; }
         IMenuRepository MenuRepository { get; }
+        ITileRepository TileRepository { get; }
     }
 }

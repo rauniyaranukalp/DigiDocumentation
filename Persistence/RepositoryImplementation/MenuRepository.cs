@@ -8,10 +8,11 @@ namespace Persistence.RepositoryImplementation
     {
         private readonly IMongoCollection<Menu> _menuCollection;
 
-        public MenuRepository(IMongoCollection<Menu> menuCollection)
+        public MenuRepository(MongoDbConnection mongoDbConnection)
         {
-            _menuCollection = menuCollection.Database.GetCollection<Menu>("menu"); ;
+            _menuCollection = mongoDbConnection.Database.GetCollection<Menu>("menu");
         }
+      
 
 
     }
