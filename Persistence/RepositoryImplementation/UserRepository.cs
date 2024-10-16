@@ -26,12 +26,13 @@ namespace Persistence.RepositoryImplementation
                 AddUserReq user = new AddUserReq()
                 {
                     username = $"{req.firstName.ToLower()}{req.lastName.Titleize()}{result + 1}00",
-                    password = req.password,
+                    password = $"{req.firstName.ToLower()}{req.lastName.Titleize()}{result + 1}00",
                     email = req.email,
+                    mobile = req.mobile,
                     firstName = req.firstName,
                     lastName = req.lastName,
                     role = req.role,
-                    isActive = req.isActive
+                    isActive = true
                 };
                 await _userCollection.InsertOneAsync(user);
                 return new Response<dynamic>(null, "Successfull");

@@ -9,6 +9,7 @@ namespace Domain.Tile
         [BsonRepresentation(BsonType.ObjectId)]
         public string? _id { get; set; }
         public string TileName { get; set; }
-        //public bool IsAdmin { get; set; }
+        [BsonElement("isVisible")]
+        public string isVisible { get; set; }
     }
 }

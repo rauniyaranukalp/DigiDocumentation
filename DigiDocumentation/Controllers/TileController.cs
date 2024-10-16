@@ -19,7 +19,7 @@ namespace DigiDocumentation.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet]
+        [HttpGet("tiles")]
         public async Task<IActionResult> GetTile()
         {
             var response = await this._serviceManager.TileService.GetTitle();

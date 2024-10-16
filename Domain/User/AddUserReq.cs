@@ -12,6 +12,7 @@ namespace Domain.User
         public string lastName { get; set; } = null!;
         public string password { get; set; } = null!;
         public string email { get; set; } = null!;
+        public string? mobile { get; set; }
         public string? username { get; set; } 
         public string role { get; set; } = "user";
         public bool isActive { get; set; } = true;
